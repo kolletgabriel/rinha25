@@ -1,4 +1,4 @@
-# Payment Service Providers (PSPs)
+# Payment Service Provider (PSP)
 
 The `compose.yml` file in this directory declares 2 instances of the payment service, as well as their respective databases. The source code can be found [here](https://github.com/zanfranceschi/rinha-de-backend-2025-payment-processor).
 
@@ -33,7 +33,7 @@ You can fetch information about a specific forwarded payment, giving its respect
 
 ```json
 {
-   "correlationId": "4a7901b8-7d26-4d9d-aa19-4dc1c7cf60b3"
+   "correlationId": "4a7901b8-7d26-4d9d-aa19-4dc1c7cf60b3",
    "amount": 19.90,
    "requestedAt": "2025-07-15T12:34:56.000Z"
 }
@@ -122,4 +122,4 @@ This endpoint simply truncates the `payments` table in that PSP's database. No r
 
 The status code is always `200 OK`.
 
-[^1]: The test script for **this specific repository** doesn't actually do that since it wouldn't make sense given the purpose of this project. More information about that is found on the simulation's [`README.md` file](../simulation/README.md).
+[^1]: The test script for **this specific repository** doesn't actually do that since it wouldn't make sense given the purpose of this project. More information about that is found on the simulation's [`README.md` file](../simulation).
