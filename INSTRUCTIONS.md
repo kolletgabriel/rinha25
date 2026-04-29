@@ -8,7 +8,12 @@ Instructions on how to simply run the implementation in this repository instead 
 
 This challenge consists in creating a RESTful service for handling payment requests by registering them and forwarding to *actual* payment service providers (PSPs) responsible to process them. You might think of it as a microservice from an ecommerce platform talking to a 3rd party payment gateway like Stripe.
 
-The **goal** is essentially to make the most possible amount of money out of the payments, but the **problem** is that your service must talk with 2 different PSPs that charge different fees: one default and one fallback for when the 1st is unavailable. It is a possibility, however, that both go unavailable at the same time!
+The **goal** is essentially to make the most possible amount of money out of the payments, but the **problem** is that your service must talk with 2 different PSPs that charge different fees:
+
+- one default, charging 7% per payment;
+- one fallback, for when the 1st is unavailable, charging 10%.
+
+It is a possibility, however, that both go unavailable at the same time!
 
 Previous editions used Gatling as the load testing tool, but this one uses **Grafana K6** instead. The simulation will validate your implementation and test its *steadiness* under pressure.
 
@@ -108,7 +113,9 @@ The response for a successful transaction is `200 OK` with the following body:
 }
 ```
 
-During eventual instability, however, this endpoint can return `5XX` errors.
+The PSP always checks for the `correlationId` on its database. If you're sending the same payment twice (after a successfull attempt, of course), the PSP will respond with `422 UNPROCESSABLE ENTITY`.
+
+During eventual instability, however, this endpoint will return a `500 INTERNAL SERVER ERROR` response.
 
 #### `GET /payments/service-health`
 
