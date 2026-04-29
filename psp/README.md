@@ -16,7 +16,7 @@ Also according to the instructions, you can make requests from the host network 
 - `http://localhost:8001`
 - `http://localhost:8002`
 
-hitting the `default` and `fallback` PSPs, respectively.
+hitting the `default` and `fallback` PSPs, respectively. The Bash script `localtest.sh` wraps `curl` and `jq` together, providing some commands that you may find useful for testing.
 
 ### Public
 
